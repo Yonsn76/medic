@@ -18,7 +18,7 @@ class ReservationData {
 
 	public function add(){
 		$sql = "insert into reservation (title,note,medic_id,date_at,time_at,pacient_id,user_id,price,status_id,payment_id,sick,symtoms,medicaments,created_at) ";
-		$sql .= "value (\"$this->title\",\"$this->note\",\"$this->medic_id\",\"$this->date_at\",\"$this->time_at\",$this->pacient_id,$this->user_id,\"$this->price\",$this->status_id,$this->payment_id,\"$this->sick\",\"$this->symtoms\",\"$this->medicaments\",$this->created_at)";
+		$sql .= "values (\"$this->title\",\"$this->note\",\"$this->medic_id\",\"$this->date_at\",\"$this->time_at\",$this->pacient_id,$this->user_id,\"$this->price\",$this->status_id,$this->payment_id,\"$this->sick\",\"$this->symtoms\",\"$this->medicaments\",datetime('now'))";
 		return Executor::doit($sql);
 	}
 
@@ -65,13 +65,13 @@ class ReservationData {
 
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename." where date(date_at)>=date(NOW()) order by date_at";
+		$sql = "select * from ".self::$tablename." where date(date_at)>=date('now') order by date_at";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new ReservationData());
 	}
 
 	public static function getAllPendings(){
-		$sql = "select * from ".self::$tablename." where date(date_at)>=date(NOW()) and status_id=1 and payment_id=1 order by date_at";
+		$sql = "select * from ".self::$tablename." where date(date_at)>=date('now') and status_id=1 and payment_id=1 order by date_at";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new ReservationData());
 	}
@@ -95,11 +95,11 @@ class ReservationData {
 	}
 
 	public static function getOld(){
-		$sql = "select * from ".self::$tablename." where date(date_at)<date(NOW()) order by date_at";
+		$sql = "select * from ".self::$tablename." where date(date_at)<date('now') order by date_at";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new ReservationData());
 	}
-	
+
 	public static function getLike($q){
 		$sql = "select * from ".self::$tablename." where title like '%$q%'";
 		$query = Executor::doit($sql);

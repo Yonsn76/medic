@@ -32,16 +32,7 @@ Sistema de Citas Médicas usando PHP, SQLite y Bootstrap.
    php init_db.php
    ```
 
-4. Verifica el estado de la base de datos:
-   - Accede a `http://tu-servidor/check_db.php`
-   - Esta página te mostrará si la base de datos está correctamente configurada
-
-5. Agrega un usuario administrador:
-   - Si no hay usuarios en la base de datos, accede a `http://tu-servidor/add_admin_user.php`
-   - Completa el formulario con los datos del usuario administrador
-   - Haz clic en "Agregar Usuario"
-
-6. Accede a la aplicación a través de tu navegador web
+4. Accede a la aplicación a través de tu navegador web
 
 ## Credenciales por defecto
 
@@ -61,4 +52,4 @@ Esta versión ha sido migrada para usar SQLite en lugar de MySQL, lo que facilit
 
 ## Basado en el proyecto original
 
-Sistema de Citas Médicas original desarrollado por Grupo Aizen.
+Sistema de Citas Médicas original desarrollado por Evilnapsis.

@@ -12,7 +12,7 @@ class PacientData {
 
 	public function add(){
 		$sql = "insert into ".self::$tablename." (name,lastname,gender,day_of_birth,address,phone,email,sick,medicaments,alergy,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->gender\",\"$this->day_of_birth\",\"$this->address\",\"$this->phone\",\"$this->email\",\"$this->sick\",\"$this->medicaments\",\"$this->alergy\",$this->created_at)";
+		$sql .= "values (\"$this->name\",\"$this->lastname\",\"$this->gender\",\"$this->day_of_birth\",\"$this->address\",\"$this->phone\",\"$this->email\",\"$this->sick\",\"$this->medicaments\",\"$this->alergy\",datetime('now'))";
 		Executor::doit($sql);
 	}
 
@@ -51,13 +51,13 @@ class PacientData {
 	}
 
 	public static function getAllActive(){
-		$sql = "select * from client where last_active_at>=date_sub(NOW(),interval 3 second)";
+		$sql = "select * from client where last_active_at>=datetime('now', '-3 seconds')";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new PacientData());
 	}
 
 	public static function getAllUnActive(){
-		$sql = "select * from client where last_active_at<=date_sub(NOW(),interval 3 second)";
+		$sql = "select * from client where last_active_at<=datetime('now', '-3 seconds')";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new PacientData());
 	}

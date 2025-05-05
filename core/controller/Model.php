@@ -20,39 +20,39 @@ class Model {
 		return "core/modules/".Module::$module."/model/".$modelname.".php";
 	}
 
-	public static function many($query,$aclass){
-		$cnt = 0;
+	public static function many($query, $aclass){
 		$array = array();
+		$cnt = 0;
 
-		while($r = $query->fetch_array()){
-			$array[$cnt] = new $aclass;
-			$cnt2=1;
-			foreach ($r as $key => $v) {
-				if($cnt2>0 && $cnt2%2==0){ 
-					$array[$cnt]->$key = $v;
+		if($query) {
+			// Configurar el modo de obtención para PDO
+			$query->setFetchMode(PDO::FETCH_ASSOC);
+
+			while($r = $query->fetch()){
+				$array[$cnt] = new $aclass;
+				foreach ($r as $key => $value) {
+					$array[$cnt]->$key = $value;
 				}
-				$cnt2++;
+				$cnt++;
 			}
-			$cnt++;
 		}
 		return $array;
 	}
 	//////////////////////////////////
-	public static function one($query,$aclass){
-		$cnt = 0;
+	public static function one($query, $aclass){
 		$found = null;
-		$data = new $aclass;
-		while($r = $query->fetch_array()){
-			$cnt=1;
-			foreach ($r as $key => $v) {
-				if($cnt>0 && $cnt%2==0){ 
-					$data->$key = $v;
-				}
-				$cnt++;
-			}
 
-			$found = $data;
-			break;
+		if($query) {
+			// Configurar el modo de obtención para PDO
+			$query->setFetchMode(PDO::FETCH_ASSOC);
+
+			$r = $query->fetch();
+			if($r){
+				$found = new $aclass;
+				foreach ($r as $key => $value) {
+					$found->$key = $value;
+				}
+			}
 		}
 		return $found;
 	}

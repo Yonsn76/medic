@@ -12,7 +12,7 @@
     <link href="res/materialize/css/materialize.css" rel="stylesheet">
     <!-- Add custom CSS here -->
     <link href="css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="fonts/css/font.css">
     <script src="js/jquery-1.10.2.js"></script>
     <script src='res/js/moment.min.js'></script>
@@ -26,13 +26,13 @@
 
   <body>
     <div class="row s12 l12 no-margin">
-        <?php 
+        <?php
           $u = null ;
           if(Session::getUID()!=""):
             $u = UserData::getById(Session::getUID());
             $user = $u->name."".$u->lastname;
-        ?> 
-       <div class="col l2">  
+        ?>
+       <div class="col l2">
         <ul id="slide-out" class="side-nav fixed">
           <li class="logo">
             <a   href="index.php?view=home" id="logo-container">
@@ -45,38 +45,41 @@
           <li><a class="waves waves-effect" href="index.php?view=medics"><i class="az-user-tie"></i> Medicos</a></li>
           <li><a class="waves waves-effect" href="index.php?view=categories"><i class="az-books"></i> Areas Medicas</a></li>
           <li><a class="waves waves-effect" href="index.php?view=reports"><i class="az-stats-dots"></i> Reportes</a></li>
-          
-        </ul> 
+
+        </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><span class="az-menu"></span></a>
- 
-      </div> 
-       
+
+      </div>
+
       <div class="col l10 s12 m12 no-padding">
         <div class="perfil">
           <div class="cont-img">
             <img src="img/user.jpg">
-          </div> 
+          </div>
           <ul>
-              <?php if($u->is_admin):?> 
+              <?php if($u->is_admin):?>
               <li><a href="index.php?view=users"><i class="az-user"></i> Usuarios </a></li>
               <?php endif;?>
               <li><a href="index.php?view=configuration"><i class="az-equalizer"></i> Configuracion</a></li>
               <li><a href="logout.php"><i class="az-exit"></i> Salir</a></li>
-              
-            </ul>
-        </div> 
-        <?php else:?> 
-      <?php endif;?> 
-        <div class="padding">
-          
-            
-            <?php 
-         
-              View::load("login");
 
-            ?>  
+            </ul>
+        </div>
+        <?php else:?>
+      <?php endif;?>
+        <div class="padding">
+
+
+            <?php
+              // Cargar la vista especificada en $_GET['view'] o la vista por defecto
+              if(!isset($_GET['view'])){
+                View::load("login");
+              } else {
+                View::load($_GET['view']);
+              }
+            ?>
           </div>
-      </div> 
+      </div>
     </div>
 
     <script src="res/bootstrap3/js/bootstrap.min.js"></script>
@@ -85,6 +88,6 @@
     <!--DATETIMEPICKER-->
     <script type="text/javascript" src="res/bootstrap3/js/bootstrap-datetimepicker.js"></script>
     <link rel="stylesheet" href="res/bootstrap3/css/bootstrap-datetimepicker.css" />
-    
+
   </body>
 </html>

@@ -14,7 +14,7 @@ class MedicData {
 
 	public function add(){
 		$sql = "insert into ".self::$tablename." (category_id,name,lastname,address,phone,email,created_at) ";
-		$sql .= "value ($this->category_id,\"$this->name\",\"$this->lastname\",\"$this->address\",\"$this->phone\",\"$this->email\",$this->created_at)";
+		$sql .= "values ($this->category_id,\"$this->name\",\"$this->lastname\",\"$this->address\",\"$this->phone\",\"$this->email\",datetime('now'))";
 		Executor::doit($sql);
 	}
 

@@ -11,7 +11,7 @@
  * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
  *
  * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2014 PHPWord contributors
+ * @copyright   2010-2023 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
@@ -118,9 +118,9 @@ abstract class AbstractElement
     /**
      * Get PhpWord
      *
-     * @return \PhpOffice\PhpWord\PhpWord
+     * @return \PhpOffice\PhpWord\PhpWord|null
      */
-    public function getPhpWord()
+    public function getPhpWord(): ?\PhpOffice\PhpWord\PhpWord
     {
         return $this->phpWord;
     }
@@ -128,10 +128,10 @@ abstract class AbstractElement
     /**
      * Set PhpWord as reference.
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \PhpOffice\PhpWord\PhpWord|null $phpWord
      * @return void
      */
-    public function setPhpWord(PhpWord $phpWord = null)
+    public function setPhpWord(?PhpWord $phpWord = null): void
     {
         $this->phpWord = $phpWord;
     }
@@ -141,7 +141,7 @@ abstract class AbstractElement
      *
      * @return int
      */
-    public function getSectionId()
+    public function getSectionId(): int
     {
         return $this->sectionId;
     }
@@ -153,7 +153,7 @@ abstract class AbstractElement
      * @param int $docPartId
      * @return void
      */
-    public function setDocPart($docPart, $docPartId = 1)
+    public function setDocPart(string $docPart, int $docPartId = 1): void
     {
         $this->docPart = $docPart;
         $this->docPartId = $docPartId;
@@ -164,7 +164,7 @@ abstract class AbstractElement
      *
      * @return string
      */
-    public function getDocPart()
+    public function getDocPart(): string
     {
         return $this->docPart;
     }
@@ -174,7 +174,7 @@ abstract class AbstractElement
      *
      * @return int
      */
-    public function getDocPartId()
+    public function getDocPartId(): int
     {
         return $this->docPartId;
     }
@@ -184,10 +184,10 @@ abstract class AbstractElement
      *
      * @return string section|headerx|footerx|footnote|endnote
      */
-    private function getMediaPart()
+    private function getMediaPart(): string
     {
         $mediaPart = $this->docPart;
-        if ($mediaPart == 'Header' || $mediaPart == 'Footer') {
+        if ($mediaPart === 'Header' || $mediaPart === 'Footer') {
             $mediaPart .= $this->docPartId;
         }
 
@@ -199,7 +199,7 @@ abstract class AbstractElement
      *
      * @return int
      */
-    public function getElementIndex()
+    public function getElementIndex(): int
     {
         return $this->elementIndex;
     }
@@ -210,7 +210,7 @@ abstract class AbstractElement
      * @param int $value
      * @return void
      */
-    public function setElementIndex($value)
+    public function setElementIndex(int $value): void
     {
         $this->elementIndex = $value;
     }
@@ -218,9 +218,9 @@ abstract class AbstractElement
     /**
      * Get element unique ID
      *
-     * @return string
+     * @return string|null
      */
-    public function getElementId()
+    public function getElementId(): ?string
     {
         return $this->elementId;
     }
@@ -230,17 +230,17 @@ abstract class AbstractElement
      *
      * @return void
      */
-    public function setElementId()
+    public function setElementId(): void
     {
-        $this->elementId = substr(md5(rand()), 0, 6);
+        $this->elementId = substr(md5((string)rand()), 0, 6);
     }
 
     /**
      * Get relation Id
      *
-     * @return int
+     * @return int|null
      */
-    public function getRelationId()
+    public function getRelationId(): ?int
     {
         return $this->relationId;
     }
@@ -251,7 +251,7 @@ abstract class AbstractElement
      * @param int $value
      * @return void
      */
-    public function setRelationId($value)
+    public function setRelationId(int $value): void
     {
         $this->relationId = $value;
     }
@@ -261,7 +261,7 @@ abstract class AbstractElement
      *
      * @return int
      */
-    public function getNestedLevel()
+    public function getNestedLevel(): int
     {
         return $this->nestedLevel;
     }
@@ -274,13 +274,13 @@ abstract class AbstractElement
      * @param \PhpOffice\PhpWord\Element\AbstractElement $container
      * @return void
      */
-    public function setParentContainer(AbstractElement $container)
+    public function setParentContainer(AbstractElement $container): void
     {
         $this->parentContainer = substr(get_class($container), strrpos(get_class($container), '\\') + 1);
 
         // Set nested level
         $this->nestedLevel = $container->getNestedLevel();
-        if ($this->parentContainer == 'Cell') {
+        if ($this->parentContainer === 'Cell') {
             $this->nestedLevel++;
         }
 
@@ -304,7 +304,7 @@ abstract class AbstractElement
      *
      * @return void
      */
-    private function setMediaRelation()
+    private function setMediaRelation(): void
     {
         if (!$this instanceof Link && !$this instanceof Image && !$this instanceof Object) {
             return;
@@ -332,7 +332,7 @@ abstract class AbstractElement
      *
      * @return void
      */
-    private function setCollectionRelation()
+    private function setCollectionRelation(): void
     {
         if ($this->collectionRelation === true && $this->phpWord instanceof PhpWord) {
             $elementName = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
@@ -347,9 +347,9 @@ abstract class AbstractElement
      *
      * @return bool
      */
-    public function isInSection()
+    public function isInSection(): bool
     {
-        return ($this->docPart == 'Section');
+        return ($this->docPart === 'Section');
     }
 
     /**

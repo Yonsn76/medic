@@ -17,10 +17,10 @@ if(Session::getUID()!=""){
 					<img width="150px" src="img/logo-gohan.png">
 				</div>
 				<div class="col s12">
-					<input class="form-control" placeholder="Correo Electronico" name="mail" type="text">
+					<input class="form-control" placeholder="Correo Electronico o Usuario" name="mail" type="text" required>
 				</div>
 				<div class="col s12">
-					<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
+					<input class="form-control" placeholder="Contraseña" name="password" type="password" value="" required>
 				</div>
 				<?php if(isset($_COOKIE['password_updated'])):?>
 		    		<div class="alert alert-success">
@@ -29,9 +29,9 @@ if(Session::getUID()!=""){
 
 		    		</div>
 		    	<?php setcookie("password_updated","",time()-18600);
-		    	 endif; ?>		
+		    	 endif; ?>
 				<div class="col s12">
-					<button class="login">
+					<button type="submit" class="login">
 						<span class="az-check"></span>
 					</button>
 				</div>

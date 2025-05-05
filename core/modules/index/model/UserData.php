@@ -13,7 +13,7 @@ class UserData {
 
 	public function add(){
 		$sql = "insert into ".self::$tablename." (name,lastname,username,password,is_active,is_admin,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->password\",$this->is_active,$this->is_admin,$this->created_at)";
+		$sql .= "values (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->password\",$this->is_active,$this->is_admin,datetime('now'))";
 		Executor::doit($sql);
 	}
 
