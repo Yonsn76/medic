@@ -1,6 +1,6 @@
-# Citas Médicas con SQLite
+# Sistema de Citas Médicas con SQLite
 
-Sistema de Citas Médicas usando PHP, SQLite y Bootstrap.
+Sistema de gestión de citas médicas usando PHP, SQLite y Bootstrap. Esta aplicación permite administrar pacientes, médicos, citas y generar reportes.
 
 ## Características
 
@@ -13,52 +13,89 @@ Sistema de Citas Médicas usando PHP, SQLite y Bootstrap.
 
 ## Requisitos
 
-- PHP 7.0 o superior
-- Extensión PDO de PHP habilitada
-- Extensión SQLite3 de PHP habilitada
+- XAMPP 7.0 o superior (incluye PHP, Apache)
+- Extensión PDO de PHP habilitada (incluida en XAMPP por defecto)
+- Extensión SQLite3 de PHP habilitada (incluida en XAMPP por defecto)
 
-## Instalación
+## Instalación en XAMPP
 
-1. Clona o descarga este repositorio en tu servidor web
-2. Asegúrate de que el directorio `db` tenga permisos de escritura
-3. Inicializa la base de datos usando uno de estos métodos:
+1. **Instalar XAMPP**:
+   - Descarga e instala XAMPP desde [https://www.apachefriends.org/](https://www.apachefriends.org/)
+   - Asegúrate de instalar al menos PHP 7.0 o superior
 
-   **Método 1: A través del navegador web (recomendado)**
-   - Accede a `http://tu-servidor/init_db_web.php`
+2. **Descargar el código**:
+   - Descarga el código de este repositorio
+   - Descomprime el archivo en la carpeta `htdocs` de XAMPP
+     - Ubicación típica en Windows: `C:\xampp\htdocs\Citas-Medicas`
+     - Ubicación típica en macOS: `/Applications/XAMPP/htdocs/Citas-Medicas`
+     - Ubicación típica en Linux: `/opt/lampp/htdocs/Citas-Medicas`
+
+3. **Iniciar XAMPP**:
+   - Abre el Panel de Control de XAMPP
+   - Inicia el servicio de Apache
+   - No es necesario iniciar MySQL ya que usamos SQLite
+
+4. **Configurar la aplicación**:
+   - Abre tu navegador web
+   - Accede a `http://localhost/Citas-Medicas/`
+   - Sigue los pasos de configuración inicial
+
+## Pasos para configurar la aplicación
+
+1. **Inicializar la base de datos**:
+   - Accede a `http://localhost/Citas-Medicas/init_db_web.php`
    - Haz clic en el botón "Inicializar Base de Datos"
+   - Esto creará la estructura de la base de datos SQLite
 
-   **Método 2: Desde la línea de comandos (si tienes acceso)**
-   ```
-   php init_db.php
-   ```
-
-4. Verifica el estado de la base de datos:
-   - Accede a `http://tu-servidor/check_db.php`
+2. **Verificar el estado de la base de datos** (opcional):
+   - Accede a `http://localhost/Citas-Medicas/check_db.php`
    - Esta página te mostrará si la base de datos está correctamente configurada
 
-5. Agrega un usuario administrador:
-   - Si no hay usuarios en la base de datos, accede a `http://tu-servidor/add_admin_user.php`
+3. **Agregar un usuario administrador**:
+   - Accede a `http://localhost/Citas-Medicas/add_admin_user.php`
    - Completa el formulario con los datos del usuario administrador
+   - Por defecto, se sugiere:
+     - Usuario: admin
+     - Contraseña: admin
    - Haz clic en "Agregar Usuario"
 
-6. Accede a la aplicación a través de tu navegador web
+4. **Acceder a la aplicación**:
+   - Accede a `http://localhost/Citas-Medicas/`
+   - Inicia sesión con las credenciales que creaste
 
-## Credenciales por defecto
+## Solución de problemas comunes
 
-- Usuario: admin
-- Contraseña: admin
+### No se puede acceder a la aplicación
+- Asegúrate de que el servicio de Apache esté iniciado en XAMPP
+- Verifica que la URL sea correcta: `http://localhost/Citas-Medicas/`
 
-## Migrado a SQLite
+### Error al inicializar la base de datos
+- Asegúrate de que PHP tenga permisos de escritura en la carpeta `db`
+- Verifica que las extensiones PDO y SQLite3 estén habilitadas en PHP
 
-Esta versión ha sido migrada para usar SQLite en lugar de MySQL, lo que facilita su instalación y uso sin necesidad de configurar un servidor de base de datos separado.
+### No puedo iniciar sesión
+- Verifica que hayas creado un usuario usando `add_admin_user.php`
+- Asegúrate de usar las credenciales correctas
+- Si olvidaste la contraseña, puedes crear un nuevo usuario administrador
 
-## Notas de la migración
+### La página muestra errores de PHP
+- Asegúrate de que estás usando PHP 7.0 o superior
+- Verifica que todas las extensiones requeridas estén habilitadas
 
-- Se ha actualizado el código para usar PDO en lugar de mysqli
-- Se han adaptado las consultas SQL para ser compatibles con SQLite
-- Se ha creado un esquema de base de datos específico para SQLite
-- Se ha implementado un sistema de inicialización automática de la base de datos
+## Estructura de archivos importantes
+
+- `index.php`: Punto de entrada principal de la aplicación
+- `init_db_web.php`: Script para inicializar la base de datos
+- `add_admin_user.php`: Script para agregar usuarios administradores
+- `check_db.php`: Script para verificar el estado de la base de datos
+- `db/bookmedik.sqlite`: Archivo de base de datos SQLite (se crea automáticamente)
+
+## Notas adicionales
+
+- Esta aplicación usa SQLite en lugar de MySQL, lo que facilita su instalación y uso sin necesidad de configurar un servidor de base de datos separado.
+- Los datos se almacenan en el archivo `db/bookmedik.sqlite` dentro de la carpeta de la aplicación.
+- Para hacer una copia de seguridad, simplemente copia este archivo.
 
 ## Basado en el proyecto original
 
-Sistema de Citas Médicas original desarrollado por Grupo Aizen.
+Sistema de Citas Médicas original desarrollado por Grupo Aizen, migrado a SQLite para facilitar su instalación y uso.

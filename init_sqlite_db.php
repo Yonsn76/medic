@@ -1,6 +1,5 @@
 <?php
 // Script para inicializar la base de datos SQLite
-require_once 'core/autoload.php';
 
 // Asegurarse de que el directorio db existe
 if (!file_exists('db')) {
@@ -9,6 +8,7 @@ if (!file_exists('db')) {
 
 $db_path = 'db/bookmedik.sqlite';
 
+try {
 // Si el archivo de base de datos ya existe, lo eliminamos para recrearlo
 if (file_exists($db_path)) {
     unlink($db_path);
@@ -23,7 +23,13 @@ $pdo->exec('PRAGMA foreign_keys = ON;');
 
 // Leer y ejecutar el script SQL
 $sql = file_get_contents('schema.sqlite.sql');
-$pdo->exec($sql);
+    if ($sql === false) {
+        throw new Exception("No se pudo leer el archivo schema.sqlite.sql");
+    }
 
+$pdo->exec($sql);
 echo "Base de datos SQLite inicializada correctamente.\n";
+} catch (Exception $e) {
+    die("Error: " . $e->getMessage() . "\n");
+}
 ?>

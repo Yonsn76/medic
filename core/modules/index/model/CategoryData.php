@@ -5,15 +5,12 @@ class CategoryData {
 
 	public function CategoryData(){
 		$this->name = "";
-		$this->lastname = "";
-		$this->email = "";
-		$this->password = "";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
 		$sql = "insert into category (name) ";
-		$sql .= "value (\"$this->name\")";
+		$sql .= "values (\"$this->name\")";
 		return Executor::doit($sql);
 	}
 

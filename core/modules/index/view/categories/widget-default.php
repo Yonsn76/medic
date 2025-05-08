@@ -18,7 +18,7 @@
 			foreach($users as $user){
 				?>
 				<tr>
-				<td><?php echo $user->name." ".$user->lastname; ?></td>
+				<td><?php echo $user->name; ?></td>
 				<td style="width:130px;">
 				<a href="index.php?view=editcategory&id=<?php echo $user->id;?>" class="btn-funct"><span class="az-mode_edit"></span></a> 
 				<a href="index.php?view=delcategory&id=<?php echo $user->id;?>" class="btn-funct"><span class="az-delete"></span></td>

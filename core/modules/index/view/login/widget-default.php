@@ -14,7 +14,7 @@ if(Session::getUID()!=""){
 			<h1>Registrate</h1> -->
 			<form class="row" accept-charset="UTF-8" role="form" method="post" action="index.php?view=processlogin">
 				<div class="col s12">
-					<img width="150px" src="img/logo-gohan.png">
+					<img width="150px" src="img/logo-line.png">
 				</div>
 				<div class="col s12">
 					<input class="form-control" placeholder="Correo Electronico o Usuario" name="mail" type="text" required>

@@ -113,10 +113,10 @@ if($_GET["status_id"]!=""||$_GET["pacient_id"]!="" ||$_GET["medic_id"]!="" ||$_G
 			// si hay usuarios
 			$_SESSION["report_data"] = $users;
 			?>
-			<!--<div class="panel panel-default">
+			<div class="panel panel-default">
 			<div class="panel-heading">
-			<a href="./report/report-word.php" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"> Descargar</i></a>
-			Reportes</div>-->
+			<a href="./report/report-word.php" class="btn btn-default waves-effect waves-light"><i class="az-download"></i> Descargar Reporte</a>
+			</div>
 			<table class="responsive-table table table-bordered table-hover">
 			<thead>
 			<th>Asunto</th>

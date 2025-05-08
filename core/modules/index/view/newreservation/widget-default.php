@@ -1,24 +1,22 @@
 <?php
 $pacients = PacientData::getAll();
 $medics = MedicData::getAll();
-
 $statuses = StatusData::getAll();
 $payments = PaymentData::getAll();
-
 ?>
 
 <div class="row">
 <div class="col-md-10">
 <h1>Nueva Cita</h1>
-<form class="form-horizontal" role="form" method="post" action="./?action=addreservation">
+<form class="form-horizontal" role="form" method="post" action="index.php?action=addreservation">
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Asunto</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Asunto *</label>
     <div class="col-lg-10">
       <input type="text" name="title" required class="form-control" id="inputEmail1" placeholder="Asunto">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Paciente</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Paciente *</label>
     <div class="col-lg-10">
 <select name="pacient_id" class="form-control" required>
 <option value="">-- SELECCIONE --</option>
@@ -29,7 +27,7 @@ $payments = PaymentData::getAll();
     </div>
   </div>
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Medico</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Medico *</label>
     <div class="col-lg-10">
 <select name="medic_id" class="form-control" required>
 <option value="">-- SELECCIONE --</option>
@@ -39,8 +37,9 @@ $payments = PaymentData::getAll();
 </select>
     </div>
   </div>
+  
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Fecha/Hora</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Fecha/Hora *</label>
     <div class="col-lg-5">
       <input type="date" name="date_at" required class="form-control" id="inputEmail1" placeholder="Fecha">
     </div>
@@ -73,7 +72,7 @@ $payments = PaymentData::getAll();
     </div>
   </div>
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Estado de la cita</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Estado de la cita *</label>
     <div class="col-lg-10">
 <select name="status_id" class="form-control" required>
   <?php foreach($statuses as $p):?>
@@ -83,7 +82,7 @@ $payments = PaymentData::getAll();
     </div>
   </div>
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Estado del pago</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Estado del pago *</label>
     <div class="col-lg-10">
 <select name="payment_id" class="form-control" required>
   <?php foreach($payments as $p):?>
@@ -94,17 +93,17 @@ $payments = PaymentData::getAll();
   </div>
 
     <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Costo</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Costo *</label>
     <div class="col-lg-10">
 <div class="input-group">
-  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-  <input type="text" class="form-control" name="price" placeholder="Costo">
+  <span class="input-group-addon">$</span>
+  <input type="number" step="0.01" min="0" class="form-control" name="price" required placeholder="Costo">
 </div>
     </div>
   </div>
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <button type="submit" class="btn btn-default">Agregar Cita</button>
+      <button type="submit" class="btn btn-primary waves-effect waves-light">Agregar Cita</button>
     </div>
   </div>
 </form>

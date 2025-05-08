@@ -36,7 +36,7 @@
         <ul id="slide-out" class="side-nav fixed">
           <li class="logo">
             <a   href="index.php?view=home" id="logo-container">
-                <img width="125px" style="padding:0.7rem 0 0 0 ;" src="img/logo-gohan-line.png" />
+                <img width="125px" style="padding:0.7rem 0 0 0 ;" src="img/logo-line.png" />
             </a>
           </li>
           <li><a class="waves waves-effect" href="index.php?view=home"><i class="az-home"></i> Inicio</a></li>
@@ -54,7 +54,7 @@
       <div class="col l10 s12 m12 no-padding">
         <div class="perfil">
           <div class="cont-img">
-            <img src="img/user.jpg">
+            <img src="img/estrella.png">
           </div>
           <ul>
               <?php if($u->is_admin):?>
